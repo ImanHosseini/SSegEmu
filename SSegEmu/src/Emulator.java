@@ -1,5 +1,8 @@
+import Lib.StdDraw;
+
 import java.io.*;
 import java.lang.management.ManagementFactory;
+import java.nio.charset.Charset;
 import java.util.Scanner;
 
 /**
@@ -13,30 +16,33 @@ public class Emulator {
         System.out.println(ManagementFactory.getRuntimeMXBean().getName());
         try {
             // String[] cmd = new String[]{"vvp","stb"};
-            String[] cmd = new String[]{"a.exe"};
+            String[] cmd = new String[]{"vvp","std"};
             // OR String cmd = "cmd /c javac";
             // OR String cmd = "java -cp myjar com.my.sample";
             ProcessBuilder pb = new ProcessBuilder(cmd);
             Process p = pb.start();
 
             // Process p = new ProcessBuilder("cmd","/c","dir").start();
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             OutputStream stdin = p.getOutputStream();
 
-            OutputStreamWriter writer = new OutputStreamWriter(stdin);
+            OutputStreamWriter writer = new OutputStreamWriter(stdin, Charset.forName("ASCII"));
             Scanner scanner = new Scanner(System.in);
             String line;
 //            Thread.sleep(1000);
 //            line = br.readLine();
 //            System.out.println(line);
 
+            SSeg sseg = new SSeg();
+            StdDraw.setCanvasSize(600,600);
             while(true){
                 String input = scanner.nextLine();
                 if(input.equals("q")) break;
-                writer.write(input);
+                writer.write(input+"\n");
                 // writer.write(System.lineSeparator());
                 writer.flush();
-                writer.close();
+
+              //  writer.close();
            //     writer.close();
 
 
@@ -47,6 +53,10 @@ public class Emulator {
 //                writer=writer2;
 
                     line = br.readLine();
+                    sseg.setFromHex(line.split(" ")[1]);
+                    //
+                // System.out.println(sseg.gfedcba[0]+"*"+sseg.gfedcba[1]+"*"+sseg.gfedcba[2]+"*"+sseg.gfedcba[3]+"*"+sseg.gfedcba[4]+"*"+sseg.gfedcba[5]+"*"+sseg.gfedcba[6]);
+                    sseg.drawDisp();
                     System.out.println(line);
 
             }
