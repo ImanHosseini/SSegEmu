@@ -1,7 +1,3 @@
-// www.referencedesigner.com 
-// Verilog Tutorial
-// Hex to 7 Segment Example
- 
 module hexto7segment(
     input  [3:0]x,
     output reg [6:0]z
