@@ -1,6 +1,8 @@
 # Manual
-<img src="https://github.com/ImanHosseini/SSegEmu/raw/master/scrnshot.JPG" width="750" />
+
 This is the manual for SSegEmu. This is meant as proof of concept to demonstrate how to make interactive simulations for hardware (Verilog) code. It is expected that by inspecting the code (which is made up of re-usable components) and the description you will be able to make simulations for other scenarios of your choice. I have opted to choose a seven segment display as my use-case. 
+<img src="https://github.com/ImanHosseini/SSegEmu/raw/master/scrnshot.JPG" width="750" />
+<br> 
 ## Dependencies
 You need **java** and **vvp** (http://iverilog.icarus.com/) to run this program. 
 ## Running the jar
